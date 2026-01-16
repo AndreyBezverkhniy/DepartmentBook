@@ -61,11 +61,11 @@ public class Employee {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Employee employee)) return false;
-        return id == employee.id && department == employee.department && salary == employee.salary && Objects.equals(fio, employee.fio);
+        return department == employee.department && salary == employee.salary && Objects.equals(fio, employee.fio);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fio, department, salary);
+        return Objects.hash(fio, department, salary);
     }
 }
