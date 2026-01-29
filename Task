@@ -1,0 +1,108 @@
++Структура
+
++DepartmentController
+	departmentService
+
+	/department/employees
+	/department/{id}/employees
+	/department/{id}/salary/sum
+	/department/{id}/salary/max
+	/department/{id}/salary/min
+
++EmployeeController
+	/employee/all
+	/employee/add?fio&department&salary
+	/employee/find?id
+	/employee/remove?id
+	/employee/averageSalary
+
++DepartmentService
+	employeeService
+	
+	getAll
+	getByDepartment
+	getSumSalaryByDepartment
+	getMaxSalaryByDepartment
+	getMinSalaryByDepartment
+
++EmployeeService
+	nextId
+	Map<Integer,Employee>
+	
+	add
+	find
+	remove
+	getAll
+	getAvgSalary
+
++Employee
+	id (get only)
+	fio
+	department
+	salary
+	
+	equals
+	toString
+
++Тесты EmployeeService
++Тесты DepartmentService (mock)
+
+EmployeeServiceTest
+	+добавление в пустой добавляет
+	+добавление несуществующего пустой добавляет
+	+добавление существующего по ФИО не создаёт копии
+	+добавление существующего по ФИО падает
+	+добавление после удаления добавляет
+	
+	поиск в пустом падает
+	поиск существующего находит
+	поиск несуществующего падает
+	
+	удаление из пустого падает
+	удаление несуществующего падает
+	удаление существующего удаляет
+	
+	getAll пустого возвращает пустоту
+	getAll наполненного возвращает полностью
+	getAll после удаления некоторых возвращает актуальное
+	
+	getAvgSalary для пустого - ноль
+	getAvgSalary для непустого - верное значение
+
+DepartmentServiceTest
+	getAll пустого возвращает пустоту
+	getAll наполненного возвращает полностью
+	getAll после удаления некоторых возвращает актуальное
+	getAll наполненного вызывает employeeService.getAll один раз
+	
+	getByDepartment пустого падает
+	getByDepartment отсутствующего департамента падает
+	getByDepartment после удаления некоторых возвращает актуальное
+	getByDepartment наполненного employeeService.getAll один раз
+	
+	getSumSalaryByDepartment пустого падает
+	getSumSalaryByDepartment отсутствующего департамента падает
+	getSumSalaryByDepartment существующего возвращает верное
+	
+	getMinSalaryByDepartment пустого падает
+	getMinSalaryByDepartment отсутствующего департамента падает
+	getMinSalaryByDepartment существующего возвращает верное
+	
+	getMaxSalaryByDepartment пустого падает
+	getMaxSalaryByDepartment отсутствующего департамента падает
+	getMaxSalaryByDepartment существующего возвращает верное
+
++Spring Git Init
++Код структуры
+
++Исключения
+	NoEmployeesException
+	EmployeePresenceException
+	EmployeeAbsenceException
+	NoDepartmentsException
+	DepartmentAbsenceException
+	EmptyDepartmentException
+
++Код исключений
+Код тестов
+Код программы
